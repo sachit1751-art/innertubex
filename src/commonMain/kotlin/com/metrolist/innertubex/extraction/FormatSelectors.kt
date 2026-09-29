@@ -23,7 +23,23 @@ public fun selectBestAudioFormat(
         AudioQuality.HIGH -> {
             validFormats.maxByOrNull(::audioFormatScore)
         }
+
+        AudioQuality.LOSSLESS -> {
+            // Prefer genuinely lossless codecs (FLAC/ALAC) by bitrate; degrade to the
+            // best available lossy stream when none is served. Never hard-fails.
+            validFormats
+                .filter { it.isLosslessCodec() }
+                .maxByOrNull { it.bitrate }
+                ?: validFormats.maxByOrNull(::audioFormatScore)
+        }
     }
+}
+
+/** True only for genuinely lossless audio codecs (FLAC/ALAC) in mimeType or codec string. */
+public fun Format.isLosslessCodec(): Boolean {
+    val codecPart = Regex("codecs=\"([^\"]+)\"").find(mimeType)?.groupValues?.getOrNull(1).orEmpty()
+    val haystack = "${mimeType.lowercase()} ${codecPart.lowercase()}"
+    return haystack.contains("flac") || haystack.contains("alac")
 }
 
 public fun selectBestVideoFormat(
