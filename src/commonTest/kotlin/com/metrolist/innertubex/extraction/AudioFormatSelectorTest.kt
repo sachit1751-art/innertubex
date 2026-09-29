@@ -113,8 +113,20 @@ class AudioFormatSelectorTest {
     fun losslessPicksHighestBitrateFlac() {
         val formats =
             listOf(
-                Format(itag = 624, mimeType = "audio/mp4; codecs=\"flac\"", bitrate = 700_000, audioSampleRate = 44_100, url = "https://flac44"),
-                Format(itag = 774, mimeType = "audio/mp4; codecs=\"flac\"", bitrate = 900_000, audioSampleRate = 48_000, url = "https://flac48"),
+                Format(
+                    itag = 624,
+                    mimeType = "audio/mp4; codecs=\"flac\"",
+                    bitrate = 700_000,
+                    audioSampleRate = 44_100,
+                    url = "https://flac44",
+                ),
+                Format(
+                    itag = 774,
+                    mimeType = "audio/mp4; codecs=\"flac\"",
+                    bitrate = 900_000,
+                    audioSampleRate = 48_000,
+                    url = "https://flac48",
+                ),
             )
 
         assertEquals(774, selectBestAudioFormat(formats, AudioQuality.LOSSLESS)?.itag)

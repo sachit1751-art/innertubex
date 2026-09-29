@@ -37,7 +37,12 @@ public fun selectBestAudioFormat(
 
 /** True only for genuinely lossless audio codecs (FLAC/ALAC) in mimeType or codec string. */
 public fun Format.isLosslessCodec(): Boolean {
-    val codecPart = Regex("codecs=\"([^\"]+)\"").find(mimeType)?.groupValues?.getOrNull(1).orEmpty()
+    val codecPart =
+        Regex("codecs=\"([^\"]+)\"")
+            .find(mimeType)
+            ?.groupValues
+            ?.getOrNull(1)
+            .orEmpty()
     val haystack = "${mimeType.lowercase()} ${codecPart.lowercase()}"
     return haystack.contains("flac") || haystack.contains("alac")
 }
