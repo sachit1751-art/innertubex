@@ -221,6 +221,7 @@ public final class com/metrolist/innertubex/cipher/YouTubeCipherService {
 public final class com/metrolist/innertubex/extraction/AudioQuality : java/lang/Enum {
 	public static final field AUTO Lcom/metrolist/innertubex/extraction/AudioQuality;
 	public static final field HIGH Lcom/metrolist/innertubex/extraction/AudioQuality;
+	public static final field LOSSLESS Lcom/metrolist/innertubex/extraction/AudioQuality;
 	public static final field LOW Lcom/metrolist/innertubex/extraction/AudioQuality;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/metrolist/innertubex/extraction/AudioQuality;
@@ -365,6 +366,7 @@ public final class com/metrolist/innertubex/extraction/ExtractionModelsKt {
 }
 
 public final class com/metrolist/innertubex/extraction/FormatSelectorsKt {
+	public static final fun isLosslessCodec (Lcom/metrolist/innertubex/models/response/PlayerResponse$StreamingData$Format;)Z
 	public static final fun selectBestAudioFormat (Ljava/util/List;Lcom/metrolist/innertubex/extraction/AudioQuality;Z)Lcom/metrolist/innertubex/models/response/PlayerResponse$StreamingData$Format;
 	public static synthetic fun selectBestAudioFormat$default (Ljava/util/List;Lcom/metrolist/innertubex/extraction/AudioQuality;ZILjava/lang/Object;)Lcom/metrolist/innertubex/models/response/PlayerResponse$StreamingData$Format;
 	public static final fun selectBestVideoFormat (Ljava/util/List;ZI)Lcom/metrolist/innertubex/models/response/PlayerResponse$StreamingData$Format;
